@@ -122,16 +122,19 @@ function makePhar( $version = '0.0.0' )
  * Scan file and replace all after "## Usage options" with multirename --help output
  *
  * @param string $keyword
+ *
+ * @return bool Returns true if new content was generated otherwise false
  */
 function updUsageFile( $keyword = '## Usage options (--help)' )
 {
     $newUsage = '';
 
     $file = './docs/' . 'USAGE.txt';
+    $hashOld = md5_file( $file );
 
-    $lines = file($file);
-    foreach ($lines as $key => $line) {
-        if ($line === $keyword.PHP_EOL) {
+    $lines = file( $file );
+    foreach ( $lines as $key => $line ) {
+        if ( $line === $keyword . PHP_EOL ) {
             $newUsage .= $keyword . PHP_EOL;
             break;
         }
@@ -140,31 +143,36 @@ function updUsageFile( $keyword = '## Usage options (--help)' )
     }
     $newUsage .= PHP_EOL;
 
-
-    $list = Mumsys_Multirename::getSetup(true);
+    $list = Mumsys_Multirename::getSetup( true );
     $list['--help'] = 'Show this help';
     $wrap = 72;
     $indentOption = '    ';
     $indentComment = "        ";
-    foreach($list as $option => $desc)
-    {
-        $needvalue = strpos($option, ':');
-        $option = str_replace(':', '', $option);
+    foreach ( $list as $option => $desc ) {
+        $needvalue = strpos( $option, ':' );
+        $option = str_replace( ':', '', $option );
 
-        if ($needvalue) {
+        if ( $needvalue ) {
             $option .= ' <yourValue/s>';
         }
 
-        if ($desc) {
-            $desc = $indentComment . wordwrap($desc, $wrap, PHP_EOL . $indentComment);
+        if ( $desc ) {
+            $desc = $indentComment . wordwrap( $desc, $wrap, PHP_EOL . $indentComment );
         }
 
-        $newUsage .= $indentOption . $option . PHP_EOL
-            . $desc . '' . PHP_EOL . PHP_EOL;
+        $newUsage .= $indentOption . $option . PHP_EOL . $desc . '' . PHP_EOL . PHP_EOL;
     }
     $newUsage .= PHP_EOL . PHP_EOL;
 
-    file_put_contents($file, $newUsage);
+    file_put_contents( $file, $newUsage );
+
+    $hashNew = md5_file( $file );
+
+    if ( $hashOld === $hashNew ) {
+        return false; // no changes
+    } else {
+        return true;
+    }
 }
 
 
@@ -177,7 +185,7 @@ function makeReadmeMd()
     $summary = [];
     $content = '';
     $target = './README.md';
-    // TOC tree to show. Value 1 - ~5
+    // TOC tree to show. Value 1 - ~6 (for: h1-h6)
     $levelsToShow = 2;
 
     $summary = [];
@@ -350,8 +358,11 @@ try
                 // for deployment of a new releases or updating the docs
                 makePhar( $version );
 
-                updUsageFile('## Usage options (--help)');
-                echo 'USAGE.txt updated' . PHP_EOL;
+                if ( updUsageFile('## Usage options (--help)') ) {
+                    echo 'USAGE.txt updated' . PHP_EOL;
+                } else {
+                    echo 'USAGE.txt same' . PHP_EOL;
+                }
 
                 makeReadmeMd();
                 echo 'README.md created' . PHP_EOL;
