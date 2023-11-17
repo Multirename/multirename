@@ -11,7 +11,7 @@
  * @category    Mumsys
  * @package     Library
  * @subpackage  Multirename
- * @version 2.4.6
+ * @version     2.4.6
  * Created 28.02.2015
  */
 
@@ -29,10 +29,11 @@ $pathLogfile = '/tmp/';
 
 // --- misc -------------------------------------------------------------------
 error_reporting( E_ALL );
-ini_set( 'display_errors', true );
+ini_set( 'display_errors', '1' );
+// abort possible BUT: some things take time! dont do it! test before!
 ignore_user_abort( false );
 
-ini_set( 'max_execution_time', 0 );
+ini_set( 'max_execution_time', '0' );
 ini_set( 'memory_limit', '32M' );
 date_default_timezone_set( 'Europe/Berlin' );
 
@@ -74,7 +75,6 @@ function myExceptionHandler( $ex )
     $logger->log( 'Exception trace:' . PHP_EOL . $ex->getTraceAsString(), 0 );
 }
 
-
 function myErrorHandler( $code, $message, $file, $row )
 {
     global $logger;
@@ -98,8 +98,9 @@ function myErrorHandler( $code, $message, $file, $row )
 set_exception_handler( 'myExceptionHandler' );
 set_error_handler( 'myErrorHandler' );
 
-// --- lets go ----------------------------------------------------------------
-
+//
+// --- run ---------------------------------------------------------------------
+//
 
 try {
     $options = Mumsys_Multirename::getSetup( true );
@@ -110,7 +111,7 @@ try {
     $config = $opts->getResult();
 
     if ( !isset( $config['path'] ) && !isset( $config['from-config'] ) && !isset( $config['help'] )
-        && !isset( $config['version'] ) ) {
+        && !isset( $config['version'] ) && !isset( $config['version-long'] ) ) {
         $message = 'Parameters found but incomplete.' . PHP_EOL . 'Usage:' .
             PHP_EOL . $opts->getHelp() . PHP_EOL;
         $logger->log( $message, 5 );
@@ -118,7 +119,9 @@ try {
         if ( isset( $config['help'] ) ) {
             $logger->log( 'Usage:' . PHP_EOL . $opts->getHelp(), 6 );
         } elseif ( isset( $config['version'] ) ) {
-            Mumsys_Multirename::showVersion();
+            echo Mumsys_Multirename::getVersionShort();
+        } elseif ( isset( $config['version-long'] ) ) {
+            echo Mumsys_Multirename::getVersionLong();
         } else {
             $oFiles = new Mumsys_FileSystem();
             $oMultirename = new Mumsys_Multirename( $config, $oFiles, $logger );
