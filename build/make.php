@@ -125,7 +125,7 @@ function makePhar( $version = '0.0.0' )
  *
  * @return bool Returns true if new content was generated otherwise false
  */
-function updUsageFile( $keyword = '## Usage options (--help)' )
+function updUsageFile( $keyword = '## Usage options --help' )
 {
     $newUsage = '';
 

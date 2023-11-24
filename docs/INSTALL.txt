@@ -66,7 +66,7 @@ The files you will call directly (if not already done):
     chmod +x <file>
 
 
-## The program comes in two flavors
+### The program comes in two flavors
 
     1) Standard php usage (the src directory must be/stay intact):
 
