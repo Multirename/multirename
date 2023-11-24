@@ -125,7 +125,7 @@ function makePhar( $version = '0.0.0' )
  *
  * @return bool Returns true if new content was generated otherwise false
  */
-function updUsageFile( $keyword = '## Usage options --help' )
+function updUsageFile( $keyword = '## options tag' )
 {
     $newUsage = '';
 
@@ -134,7 +134,7 @@ function updUsageFile( $keyword = '## Usage options --help' )
 
     $lines = file( $file );
     foreach ( $lines as $key => $line ) {
-        if ( $line === $keyword . PHP_EOL ) {
+        if ( $line === $keyword . PHP_EOL  ) {
             $newUsage .= $keyword . PHP_EOL;
             break;
         }
@@ -177,7 +177,7 @@ function updUsageFile( $keyword = '## Usage options --help' )
 
 
 /**
- * creates the README.md file for github
+ * creates the README.md file for github incl the Summary/ TOC
  */
 function makeReadmeMd()
 {
@@ -188,7 +188,7 @@ function makeReadmeMd()
     // TOC tree to show. Value 1 - ~6 (for: h1-h6)
     $levelsToShow = 2;
 
-    $summary = [];
+    $summary = array();
     $content = '';
 
     foreach ($docs as $doc => $wiki)
@@ -201,39 +201,52 @@ function makeReadmeMd()
 
         $lines = file('./docs/' . $doc);
 
-        foreach ($lines as $line)
+        foreach ($lines as $idx => $line)
         {
             $content .= $line;
 
-            // build summary list (h1-h6)
-            if ( $line !== "# Summary\n"
-                && preg_match( '/^(#|##|###|####|#####|######)?( \w)+/i', $line, $matches ) ) {
-                if ( ($cntIndent = strlen( $matches[1] ) - 1 ) < 0 ) {
-                    $cntIndent = 0;
-                }
-
-                if ($levelsToShow -1 < $cntIndent ) {
-                    continue;
-                }
-
-                $prefix = strstr($line, ' ', true);
-                $line = str_replace('#', '', $line);
-
-                if (!isset($prefix[0])) { // ???
-                    echo 'ERROR with line: "' . $line . '"' . PHP_EOL;
-                }
-
-                $indent = str_repeat( "\t", $cntIndent );
-                $prefix = str_replace($matches[1], $indent . '-', $prefix);
-
-                $line = trim($line);
-                $linkLine = strtolower($line);
-                $linkLine = preg_replace('/(\s|\W)+/', '-', $linkLine);
-                $linkLine = trim($linkLine, '-');
-
-                // the docs have *nix ending: \n
-                $summary[] = $prefix . ' [' . $line . '](#' . $linkLine . ')' . "\n";
+            $linktext = checkDocTocLine( $line, $levelsToShow, '-', "\n", $idx );
+            if ( $linktext ) {
+                $summary[] = $linktext;
             }
+
+//            // build summary list (h1-h6)
+//            if ( $line !== "# Summary\n"
+//                && preg_match( '/^(#|##|###|####|#####|######)?( \w)+/i', $line, $matches ) ) {
+//                if ( ($cntIndent = strlen( $matches[1] ) - 1 ) < 0 ) {
+//                    $cntIndent = 0;
+//                }
+//
+//                if ($levelsToShow -1 < $cntIndent ) {
+//                    continue;
+//                }
+//
+//                $prefix = strstr($line, ' ', true);
+//                $line = str_replace('#', '', $line);
+//
+//                if (!isset($prefix[0])) { // ???
+//                    echo 'ERROR with line (' . ($idx+1) . '): "' . $line . '"' . PHP_EOL;
+//                }
+//
+//                $indent = str_repeat( "\t", $cntIndent );
+//                $prefix = str_replace($matches[1], $indent . '-', $prefix);
+//
+//                $line = trim($line);
+//                $linkLine = strtolower($line);
+//
+//                //orig:$linkLine = preg_replace('/(\s|\W)+/', '-', $linkLine);
+//
+//                $search = array(' ', '!', '&', ':');
+//                $replace = array('-', '-', '', '');
+//                $linkLine = str_replace( $search, $replace, $linkLine );
+//                $linkLine = preg_replace('/(\s)+/', '-', $linkLine);
+//                //echo "$linkLine :: $line\n";
+//
+//                $linkLine = trim($linkLine, '-&:!');
+//
+//                // the docs have *nix ending: \n
+//                $summary[] = $prefix . ' [' . $line . '](#' . $linkLine . ')' . "\n";
+//            }
 
         }
     }
@@ -243,6 +256,64 @@ function makeReadmeMd()
     // replace makers
     $content = str_replace(array('##VERSIONSTRING##'), array(Mumsys_Multirename::VERSION), $content);
     file_put_contents($target, $content);
+}
+
+
+
+/**
+ * Check a line of a markdown document and return the text as link if it is a headline
+ *
+ * @param string $line Text line to inspect
+ * @param int $levelsToShow Headlines of 1 to 6 for h1-h6 headlines in html
+ * @param string $listSign List starts with a - or +
+ * @param string $docEOL Line break char. Default "\n"
+ * @param type $lineNumber Optional line number for error output
+ * @return string Empty string for no headline or the text as link with anker
+ */
+function checkDocTocLine($line, $levelsToShow=6, $listSign='-', $docEOL ="\n", $lineNumber=0) {
+
+     $tocLine = '';
+
+     if ( $line[0] !== '#' ) {
+        return $tocLine; // not a toc line
+    }
+
+    $matches = null;
+    if ( preg_match( '/^(#|##|###|####|#####|######)?( \w)+/i', $line, $matches ) ) {
+        if ( ($cntIndent = strlen( $matches[1] ) - 1 ) < 0 ) {
+            $cntIndent = 0;
+        }
+
+        if ( $levelsToShow - 1 < $cntIndent ) {
+            return $tocLine;
+        }
+
+        $prefixA = strstr( $line, ' ', true );// the first char after #
+        $line = str_replace( '#', '', $line );
+
+        if ( !isset( $prefixA[0] ) ) {
+            echo 'ERROR with line (' . ($idx+1) . '): "' . $line . '"' . PHP_EOL;
+        }
+
+        $indent = str_repeat( "\t", $cntIndent );
+        $prefix = str_replace( $matches[1], $indent . $listSign, $prefixA );
+
+        $line = trim( $line );
+        $linkLine = strtolower( $line );
+
+        //orig:$linkLine = preg_replace('/(\s|\W)+/', $listSign, $linkLine);
+
+        $search = array(' ', '!', '&', ':', '(', ')', '/');
+        $replace = array('-', '-', '', '', '', '', '');
+        $linkLine = str_replace( $search, $replace, $linkLine );
+        $linkLine = preg_replace( '/(\s)+/', '-', $linkLine );
+
+        $linkLine = trim( $linkLine, '-&:!#' );
+
+        $tocLine = $prefix . ' [' . $line . '](#' . $linkLine . ')' . $docEOL;
+    }
+
+    return $tocLine;
 }
 
 

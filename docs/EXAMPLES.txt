@@ -16,6 +16,10 @@ word "this" if it exists:
     or in short:
     multirename --path 'YOUR_PATH' -e '*' -s ' =_;this' --keepcopy --test
 
+    What the progam does now:
+        - ' ' goes _ and then   # replacement 1
+        - 'this' goes ''        # replacement 2
+
 
 ### Beautifing hyphen, comma and colon
 
