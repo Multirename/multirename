@@ -11,7 +11,7 @@
  * @category    Mumsys
  * @package     Library
  * @subpackage  Multirename
- * @version     2.4.6
+ * @version     2.5.19
  * Created 28.02.2015
  */
 
@@ -54,7 +54,7 @@ $logOptions = array(
     'logfile' => $pathLogfile . 'multirename.' . $user . '.log',
     'way' => 'a',
     'logLevel' => 7,
-    'msglogLevel' => 7, // can be changed in cmd line! as --loglevel
+    'msglogLevel' => 6, // can be changed in cmd line! as --loglevel
     'msgLineFormat' => '[%3$s] %5$s',
     'msgEcho' => true,
     'msgReturn' => false,

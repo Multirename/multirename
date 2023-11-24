@@ -2,80 +2,78 @@
 
 ## Contributors are welcome!
 
-Checkout a branch of stable|testing|unstable including updates and switching
-to one of it (probably unstable) and including the externals with updates, use
-the helper script:
+Checkout branch of `unstable` including updates (e.g: composer install) and
+including the externals with updates: use the helper script:
 
-    ./helper/gitupdate.sh [branchname]
+    ./helper/gitupdate.sh unstable
 
-I decide to use staging areas to keep the "stable" clean of bugs as good as 
+I decide to use staging areas to keep the `stable` clean of bugs as good as
 possible and for maximum of stability.
 
-Staging areas are "unstable" -> "testing" -> "stable"
+Staging areas are `unstable` -> `testing` -> `stable`
 
-"stable" should be always the latest stable release! (Incl. Hotfixes)
+`stable` should be always the latest stable release! (Incl. Hotfixes)
 
-All new code/ development should go to "unstable".
-Also, if needed, to the externals which having also these staging areas.
+All new code/ development should go to `unstable`. Also, if needed, the
+externals (submodules) which having also these staging areas.
 
-If you would like to add features or push some improvements: The unstable branch 
+If you would like to add features or push some improvements: The unstable branch
 is basicly the entry point and the latest code base.
-Checkout the "unstable" branch create a new branch for your part to start in.
+Checkout the `"unstable` branch create a new branch for your part to start in.
     
     git clone https://github.com/Multirename/multirename.git
     cd multirename
     ./helper/gitupdate.sh unstable
     git checkout -b yourNewBranch
 
-Note: You may also create own branches for the existing externals
+Note: You may also create own branches for the existing externals?
 
     cd externals/<name.../...>
     git checkout unstable
     git checkout -b yourNewBranch
 
 If tests exists and the function of fixed bugs, new features is verified it will
-be merged to "testing" (collecting the updates, versions, features)... for the 
+be merged to `testing` (collecting the updates, versions, features)... for the
 next release candidate or sub releases.
 
-Hotfixes will go to extra branches and will be merged directly to the "stable".
+Hotfixes will go to extra branches and will be merged directly to the `stable`.
 
 When merging branches take a look into .gitmodules of _each_ branch and verify
-that the branches still map to the branch name of the master project.
-E.g.: The branch "testing" of the project maps to the "testing" branch of the
-submodules eg. the library, and so on. 
-For this reason you may use the helper script more often and follow this 
-workflow: 
+that the branches still map to the branch name of the main project.
+E.g.: The branch `testing` of the project maps to the `testing` branch of the
+submodules eg. the library, and so on.
+For this reason you may use the helper script more often and follow this
+workflow:
 
     # checkout given branch of the main project
     # init, updates and pulls the submodules for the given branch
+    git pull # in case the ./helper/gitupdate.sh is modified
     ./helper/gitupdate.sh unstable
-    # Create a pull request
 
     # the maintainer will follow the workflow: After a merge, e.g.:
     ./helper/gitupdate.sh testing
     git merge unstable
-    # or have a look to helper/gitmerge.sh BranchToMerge
-    # to stage the changes   
+    # or have a look to ./helper/gitmerge.sh BranchToMerge` to stage the changes
 
 
 ## Deployment
 
-The build/make.php file will help to create files for the deployment e.g. if you 
-would like to create new readme.md/wiki entrys or to create a release. All text 
-files in the docs/ are involved. If you modify them there using markdown syntax 
-the deployment and the creation with new documentation will be generated.
+The build/make.php file will help to create files for the deployment e.g. if you
+would like to create a new readme.md/wiki entrys or to create a release. All
+text files in the docs/ are involved. If you modify them there using markdown
+syntax the deployment and the creation with new documentation will be generated.
 
     # Will generate .md files for the wiki and the summary file /README.md
     # Best option does all:
     php make.php deploy --compress
 
 Please use `make.php clean` after copying the files for you needs. Deploy files
-are not to commit to the repository. Only the maintainer will do for stable 
-releases.
+are not to commit to the repository. Only the maintainer will do for stable
+releases in `bin/` repository.
 
-When commiting new stuff you should first commit the externals changes and at 
+When commiting new stuff you should first commit the externals changes and at
 least the project version. The external commit ID should map to the commit ID of
-the project when other people will check it out. I know this is not that handy 
+the project when other people will check it out. I know this is not that handy
 but i have no other/better idea at the moment to handle it and the projects are
 very close to each other.
 

@@ -7,7 +7,7 @@ Getting the source you have serveral options:
 Download page for [releases](https://github.com/Multirename/multirename/releases) 
 or [tags](https://github.com/Multirename/multirename/tags)
 
-Old download/ project page for [releases](https://github.com/flobee/multirename/releases)
+Binary versions can be found [here](https://github.com/Multirename/bin)
 
 
 ## Pre-Install
@@ -26,15 +26,19 @@ Some output may be different when using bash. ash seems to be fine.
 
 ### Windows
 
-Please use cygwin (http://cygwin.com). Native support will be in the future)
+Please use cygwin (http://cygwin.com) or wsl. Native support will be in the
+future.
 
 
 ### Quick install 
+
 (*nix based systems)
 
-    (copy & past but replace ##VERSIONSTRING## with e.g: 1.4.1)
+    # Find you version here: (https://github.com/Multirename/bin)
+
+    # or copy & past but replace ##VERSIONSTRING## with e.g: 1.4.1)
     cd /tmp
-    wget https://github.com/Multirename/multirename/blob/stable/deploy/multirename\
+    #wget https://github.com/Multirename/--CURRENTLY_-_INCOMPLETE--\
     -##VERSIONSTRING##.tgz?raw=true -O multirename-##VERSIONSTRING##.tgz
     tar -xf multirename-##VERSIONSTRING##.tgz
     chmod +x multirename.phar
@@ -83,11 +87,11 @@ The files you will call directly (if not already done):
 
     2. For users who just want to use the program. Possible options:
 
-    2.1: If available (served with the package):
+    2.1: If available (maybe served with the package):
          /PATH/multirename/build/multirename.phar [--help|options]
 
     2.2: Make it global available:
-        copy or move /PATH/multirename/build/multirename.phar to /usr/local/bin/multirename
+        copy or move /PATH/multirename/deploy/multirename.phar to /usr/local/bin/multirename
         multirename [--help|options]
 
         Or (but build directory must be intact):
@@ -95,12 +99,13 @@ The files you will call directly (if not already done):
         multirename [--help|options]
 
 
-    3.0: The library itself contains a `/bin/multirename.php` shell script 
+    3.0: The library itself contains a `/bin/multirename[.php]` shell script 
         excluding all the rest of docs and other informations of this package.
 
 
 
 # Build
+
 (build/make.php)
 
 This is not a typical make but for most of you probably an interesting corner.
@@ -127,11 +132,13 @@ If you want to build it by yourself, run: php make.php install
 
 Note: This requires php >= 8.0 and changes in your php.ini of the used php 
 version (if several on board). Changes in the php.ini for the cli only is ok. 
-The php.ini for web/ live enviroment: STOP: NOT OK!
+The php.ini for web/ live/ production enviroment: STOP: NOT OK!
 
-    e.g.: /etc/php/cli/php.ini; Change:
-    ";phar.readonly = On" to
-    "phar.readonly = 0" (drop semicolon, On to 0 (Off))
+    e.g.: /etc/php/cli/php.ini:
+    [Phar]
+    ; http://php.net/phar.readonly
+    ;phar.readonly = On" (drop semicolon, On to 0 (Off))
+    phar.readonly = 0
 
 Then you are able to create your own multirename.phar file whichs bundles
 all nessasary files for the program to one file (Like java *.jar files) and
@@ -146,10 +153,9 @@ The first line must show: "[INFO] Usage:"
 
 The performance of this bundle is nearly the same than using the standard
 sources for a php application (some people say it boost the performance...)
-Well :-) less disk IO can make sence.
 
-On upgrades only "multirename.phar" needs to be updated. Checkout the deploy/
-directory where i may add final versions.
+On upgrades only "multirename.phar" needs to be updated. Checkout the bin/
+repository where i add final versions.
 
 
 ### 2.: php make.php clean:
@@ -161,4 +167,4 @@ Drops files created within the make script
 
 Task for a new release of multirename or just updating the documentation. For 
 more please have a look in the [contributions section](#contributions) or at the
-[./docs/CONTRIBUTE.txt](./docs/CONTRIBUTE.txt)
+(./docs/CONTRIBUTE.txt)

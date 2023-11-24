@@ -5,12 +5,12 @@
 # -----------------------------------------------------------------------------
 # @license LGPL Version 3 http://www.gnu.org/licenses/lgpl-3.0.txt
 # @copyright (c) 2015 by Florian Blasel
-# @author Florian Blasel <flobee.code@gmail.com>
+# @author Florian Blasel <[ba|z|a]sh: echo 1l2b33.code@EmAil.c2m | tr 123AE foeag>
 # -----------------------------------------------------------------------------
 # @category    Mumsys
 # @package     Library
 # @subpackage  Multirename
-# @version     2.4.6
+# @version     2.5.19
 # Created on 2015-04-08
 # }}}
 

@@ -1,9 +1,8 @@
 # Bugs
 
-There are one or some and hopefully none!
-Be sure using the --test mode and check all results! Have a look at the output 
-when substitution or search keywords having special characters e.g: ? & ... 
-I think the pcre engine does not like it but i haven't checked it yet.
+There are one or some and hopefully none! Be sure using the --test mode and
+check all results! Have a look at the output when substitution or search
+keywords having special characters e.g: ? & * / \ | # ... 
 
 Your help would be great to find bugs or add features and improvements.
 

@@ -2,6 +2,12 @@
 
 ## Reported issues
 
+- [00%] initSetup: value could be an array from another app when shell gives strings
+        Check code for this text line
+
+- [00%] resolve paths --path when using relativ path: eg: 
+        somewhere:../../../../../../tmp/ vs /tmp
+
 - [00%] #2 global substitutions as prefix or suffix to current substitutions?
 
 - [40%] #4 Extend the history

@@ -2,7 +2,7 @@
 
 ## Simple replacements/ substitutions:
 
-### Example:
+### Example
 
 Delete all spaces in filenames and replace it with an underscore and remove the 
 word "this" if it exists:
@@ -13,11 +13,11 @@ word "this" if it exists:
         --keepcopy  \
         --test
 
-    or:
+    or in short:
     multirename --path 'YOUR_PATH' -e '*' -s ' =_;this' --keepcopy --test
 
 
-### Beautifing hyphen, comma and colon?
+### Beautifing hyphen, comma and colon
 
 Your substitution could look like: 
 
@@ -42,9 +42,9 @@ As you can see, using --test is always a good option to avoid problems!
 
 
 
-## For the vdr project this can help:
+## For the vdr project this can help
 
-### Example 1:
+### Example 1
 
 Check the difference in simple recordings and series recordings in vdr.
 The following example is for simple recordings!
@@ -68,12 +68,12 @@ Would do e.g.:
     old: info
     new: ../True_Grit.nfo
 
-The default pattern for vdr recordings and maybe created mpg's 00001.ts.mpg:
+The default pattern for vdr recordings:
  
     regex:/^(\d{5}|\d{5}\.ts|info|marks)$/i
 
 
-### Example 2:
+### Example 2
 
 This example is for my series. When recording i use different subfolders like: 
 Movie, Series, Doc, DocSeries so i can run multirename automatically without 
@@ -102,7 +102,7 @@ don't rename the files!):
 
 
 
-## Synology DTV TV recordings:
+## Synology DTV TV recordings
 
     multirename --path 'YOUR-SYNO-RECORDING-PATH' \
         -e "ts;m2t;mpg;mpeg"

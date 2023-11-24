@@ -2,12 +2,13 @@
 
 ## multirename - A shell program written in PHP
 
-### Version 2.4.6
+### Version 2.5.19
 
-This program is made to use as shell program and also for batch processing. 
+This program is made to use as shell program and also for batch processing.
 This means: If you have tonns of files to be renamed or have always new files 
 which must be renamed: This program is made for you! I use it only in cronjobs
-but its also possible for web applications and file renaming tasks.
+but its also possible for web applications and local/ individual file renaming
+tasks.
 
 
 Hello! Welcome to my program. I hope you will enjoy it!
@@ -19,7 +20,7 @@ Notice: Auto generated file. All documentation was bundled in the README.md.
 For a single text files have a look at the [/docs](/docs))
 Versions: The documentation at the wiki belongs to the stable branch / latest
 stable release. This documentation belongs to the branch you switch to. The
-latest version you will find at the "unstable" branch.
+latest version you will find at the `unstable` branch.
 And: The wiki takes extra work to care about. Dont trust if you see an older
 version. Probably i forgot to update it.
 
@@ -48,8 +49,8 @@ can be reviewed in /docs.
 - [Features](#features)
 - [Examples for Multirename](#examples-for-multirename)
 	- [Simple replacements/ substitutions:](#simple-replacements-substitutions)
-	- [For the vdr project this can help:](#for-the-vdr-project-this-can-help)
-	- [Synology DTV TV recordings:](#synology-dtv-tv-recordings)
+	- [For the vdr project this can help](#for-the-vdr-project-this-can-help)
+	- [Synology DTV TV recordings](#synology-dtv-tv-recordings)
 - [Install](#install)
 	- [Downloads](#downloads)
 	- [Pre-Install](#pre-install)
@@ -131,7 +132,7 @@ can be reviewed in /docs.
 
 ## Simple replacements/ substitutions:
 
-### Example:
+### Example
 
 Delete all spaces in filenames and replace it with an underscore and remove the 
 word "this" if it exists:
@@ -142,11 +143,11 @@ word "this" if it exists:
         --keepcopy  \
         --test
 
-    or:
+    or in short:
     multirename --path 'YOUR_PATH' -e '*' -s ' =_;this' --keepcopy --test
 
 
-### Beautifing hyphen, comma and colon?
+### Beautifing hyphen, comma and colon
 
 Your substitution could look like: 
 
@@ -171,9 +172,9 @@ As you can see, using --test is always a good option to avoid problems!
 
 
 
-## For the vdr project this can help:
+## For the vdr project this can help
 
-### Example 1:
+### Example 1
 
 Check the difference in simple recordings and series recordings in vdr.
 The following example is for simple recordings!
@@ -197,12 +198,12 @@ Would do e.g.:
     old: info
     new: ../True_Grit.nfo
 
-The default pattern for vdr recordings and maybe created mpg's 00001.ts.mpg:
+The default pattern for vdr recordings:
  
     regex:/^(\d{5}|\d{5}\.ts|info|marks)$/i
 
 
-### Example 2:
+### Example 2
 
 This example is for my series. When recording i use different subfolders like: 
 Movie, Series, Doc, DocSeries so i can run multirename automatically without 
@@ -231,7 +232,7 @@ don't rename the files!):
 
 
 
-## Synology DTV TV recordings:
+## Synology DTV TV recordings
 
     multirename --path 'YOUR-SYNO-RECORDING-PATH' \
         -e "ts;m2t;mpg;mpeg"
@@ -275,7 +276,7 @@ Getting the source you have serveral options:
 Download page for [releases](https://github.com/Multirename/multirename/releases) 
 or [tags](https://github.com/Multirename/multirename/tags)
 
-Old download/ project page for [releases](https://github.com/flobee/multirename/releases)
+Binary versions can be found [here](https://github.com/Multirename/bin)
 
 
 ## Pre-Install
@@ -294,17 +295,21 @@ Some output may be different when using bash. ash seems to be fine.
 
 ### Windows
 
-Please use cygwin (http://cygwin.com). Native support will be in the future)
+Please use cygwin (http://cygwin.com) or wsl. Native support will be in the
+future.
 
 
 ### Quick install 
+
 (*nix based systems)
 
-    (copy & past but replace 2.4.6 with e.g: 1.4.1)
+    # Find you version here: (https://github.com/Multirename/bin)
+
+    # or copy & past but replace 2.5.19 with e.g: 1.4.1)
     cd /tmp
-    wget https://github.com/Multirename/multirename/blob/stable/deploy/multirename\
-    -2.4.6.tgz?raw=true -O multirename-2.4.6.tgz
-    tar -xf multirename-2.4.6.tgz
+    #wget https://github.com/Multirename/--CURRENTLY_-_INCOMPLETE--\
+    -2.5.19.tgz?raw=true -O multirename-2.5.19.tgz
+    tar -xf multirename-2.5.19.tgz
     chmod +x multirename.phar
     mv multirename.phar /usr/local/bin/multirename
     multirename --help
@@ -351,11 +356,11 @@ The files you will call directly (if not already done):
 
     2. For users who just want to use the program. Possible options:
 
-    2.1: If available (served with the package):
+    2.1: If available (maybe served with the package):
          /PATH/multirename/build/multirename.phar [--help|options]
 
     2.2: Make it global available:
-        copy or move /PATH/multirename/build/multirename.phar to /usr/local/bin/multirename
+        copy or move /PATH/multirename/deploy/multirename.phar to /usr/local/bin/multirename
         multirename [--help|options]
 
         Or (but build directory must be intact):
@@ -363,12 +368,13 @@ The files you will call directly (if not already done):
         multirename [--help|options]
 
 
-    3.0: The library itself contains a `/bin/multirename.php` shell script 
+    3.0: The library itself contains a `/bin/multirename[.php]` shell script 
         excluding all the rest of docs and other informations of this package.
 
 
 
 # Build
+
 (build/make.php)
 
 This is not a typical make but for most of you probably an interesting corner.
@@ -395,11 +401,13 @@ If you want to build it by yourself, run: php make.php install
 
 Note: This requires php >= 8.0 and changes in your php.ini of the used php 
 version (if several on board). Changes in the php.ini for the cli only is ok. 
-The php.ini for web/ live enviroment: STOP: NOT OK!
+The php.ini for web/ live/ production enviroment: STOP: NOT OK!
 
-    e.g.: /etc/php/cli/php.ini; Change:
-    ";phar.readonly = On" to
-    "phar.readonly = 0" (drop semicolon, On to 0 (Off))
+    e.g.: /etc/php/cli/php.ini:
+    [Phar]
+    ; http://php.net/phar.readonly
+    ;phar.readonly = On" (drop semicolon, On to 0 (Off))
+    phar.readonly = 0
 
 Then you are able to create your own multirename.phar file whichs bundles
 all nessasary files for the program to one file (Like java *.jar files) and
@@ -414,10 +422,9 @@ The first line must show: "[INFO] Usage:"
 
 The performance of this bundle is nearly the same than using the standard
 sources for a php application (some people say it boost the performance...)
-Well :-) less disk IO can make sence.
 
-On upgrades only "multirename.phar" needs to be updated. Checkout the deploy/
-directory where i may add final versions.
+On upgrades only "multirename.phar" needs to be updated. Checkout the bin/
+repository where i add final versions.
 
 
 ### 2.: php make.php clean:
@@ -429,7 +436,7 @@ Drops files created within the make script
 
 Task for a new release of multirename or just updating the documentation. For 
 more please have a look in the [contributions section](#contributions) or at the
-[./docs/CONTRIBUTE.txt](./docs/CONTRIBUTE.txt)
+(./docs/CONTRIBUTE.txt)
 # Usage of Multirename
 
 ## Forword
@@ -527,16 +534,17 @@ first (tail -f multirename/tmp/multirename.$USER.log) befor stop the process.
         e.g: --link soft:rel or --link soft:abs the linkway will be extracted
         from that line. Otherwise use --link soft --linkway rel|abs
 
-    --history|-h
-        Flag; If set this will enable the history and tracks all actions for a
-        later undo
+    --history
+        Flag; If set this will track the current action in a history file e.g.
+        for a later undo.
 
     --history-size <yourValue/s>
-        Integer; Number of history entrys if --history is enabled; Default: 10;
-        Note: If you run on much more than hundreds of files you may set the
-        memory limit to a higher value and/or reduce this number to 1. This
-        feature may consume much memory. Using the --test mode with loglevel 6
-        or higher will give you informations about the memory usage.
+        Integer; Number of history entrys if --history is enabled; Default: 10.
+        To be set with --save-config and to be used automatically with
+        --from-config. Note: If you run on much more than hundreds of files you
+        may set the memory limit to a higher value and/or reduce this number to
+        1. This feature may consume much memory. Using the --test mode with
+        loglevel 6 or higher will give you informations about the memory usage.
 
     --batch
         Flag; Not implemented yet. Run the job recusiv from given --path as
@@ -581,7 +589,10 @@ first (tail -f multirename/tmp/multirename.$USER.log) befor stop the process.
         Print some stats after execution
 
     --version|-v
-        Flag; Return version informations
+        Flag; Return version information
+
+    --version-long
+        Flag; Return version informations incl. dependencies
 
     --help
         Show this help
@@ -592,80 +603,78 @@ first (tail -f multirename/tmp/multirename.$USER.log) befor stop the process.
 
 ## Contributors are welcome!
 
-Checkout a branch of stable|testing|unstable including updates and switching
-to one of it (probably unstable) and including the externals with updates, use
-the helper script:
+Checkout branch of `unstable` including updates (e.g: composer install) and
+including the externals with updates: use the helper script:
 
-    ./helper/gitupdate.sh [branchname]
+    ./helper/gitupdate.sh unstable
 
-I decide to use staging areas to keep the "stable" clean of bugs as good as 
+I decide to use staging areas to keep the `stable` clean of bugs as good as
 possible and for maximum of stability.
 
-Staging areas are "unstable" -> "testing" -> "stable"
+Staging areas are `unstable` -> `testing` -> `stable`
 
-"stable" should be always the latest stable release! (Incl. Hotfixes)
+`stable` should be always the latest stable release! (Incl. Hotfixes)
 
-All new code/ development should go to "unstable".
-Also, if needed, to the externals which having also these staging areas.
+All new code/ development should go to `unstable`. Also, if needed, the
+externals (submodules) which having also these staging areas.
 
-If you would like to add features or push some improvements: The unstable branch 
+If you would like to add features or push some improvements: The unstable branch
 is basicly the entry point and the latest code base.
-Checkout the "unstable" branch create a new branch for your part to start in.
+Checkout the `"unstable` branch create a new branch for your part to start in.
     
     git clone https://github.com/Multirename/multirename.git
     cd multirename
     ./helper/gitupdate.sh unstable
     git checkout -b yourNewBranch
 
-Note: You may also create own branches for the existing externals
+Note: You may also create own branches for the existing externals?
 
     cd externals/<name.../...>
     git checkout unstable
     git checkout -b yourNewBranch
 
 If tests exists and the function of fixed bugs, new features is verified it will
-be merged to "testing" (collecting the updates, versions, features)... for the 
+be merged to `testing` (collecting the updates, versions, features)... for the
 next release candidate or sub releases.
 
-Hotfixes will go to extra branches and will be merged directly to the "stable".
+Hotfixes will go to extra branches and will be merged directly to the `stable`.
 
 When merging branches take a look into .gitmodules of _each_ branch and verify
-that the branches still map to the branch name of the master project.
-E.g.: The branch "testing" of the project maps to the "testing" branch of the
-submodules eg. the library, and so on. 
-For this reason you may use the helper script more often and follow this 
-workflow: 
+that the branches still map to the branch name of the main project.
+E.g.: The branch `testing` of the project maps to the `testing` branch of the
+submodules eg. the library, and so on.
+For this reason you may use the helper script more often and follow this
+workflow:
 
     # checkout given branch of the main project
     # init, updates and pulls the submodules for the given branch
+    git pull # in case the ./helper/gitupdate.sh is modified
     ./helper/gitupdate.sh unstable
-    # Create a pull request
 
     # the maintainer will follow the workflow: After a merge, e.g.:
     ./helper/gitupdate.sh testing
     git merge unstable
-    # or have a look to helper/gitmerge.sh BranchToMerge
-    # to stage the changes   
+    # or have a look to ./helper/gitmerge.sh BranchToMerge` to stage the changes
 
 
 ## Deployment
 
-The build/make.php file will help to create files for the deployment e.g. if you 
-would like to create new readme.md/wiki entrys or to create a release. All text 
-files in the docs/ are involved. If you modify them there using markdown syntax 
-the deployment and the creation with new documentation will be generated.
+The build/make.php file will help to create files for the deployment e.g. if you
+would like to create a new readme.md/wiki entrys or to create a release. All
+text files in the docs/ are involved. If you modify them there using markdown
+syntax the deployment and the creation with new documentation will be generated.
 
     # Will generate .md files for the wiki and the summary file /README.md
     # Best option does all:
     php make.php deploy --compress
 
 Please use `make.php clean` after copying the files for you needs. Deploy files
-are not to commit to the repository. Only the maintainer will do for stable 
-releases.
+are not to commit to the repository. Only the maintainer will do for stable
+releases in `bin/` repository.
 
-When commiting new stuff you should first commit the externals changes and at 
+When commiting new stuff you should first commit the externals changes and at
 least the project version. The external commit ID should map to the commit ID of
-the project when other people will check it out. I know this is not that handy 
+the project when other people will check it out. I know this is not that handy
 but i have no other/better idea at the moment to handle it and the projects are
 very close to each other.
 
@@ -697,8 +706,7 @@ shell. Also me :-) but i know php and find my solution to help myself for a
 solution to rename files like i need it. Multirename was born.
 Nothing new! And maybe already done anywhere in any rename program.
 
-Maybe some of my ideas you will find useful or finds a new home ... Hopfully it 
-will stay :-)
+Maybe some of my ideas you will find useful... Hopfully it will stay :-)
 The very beginning of this program was in ~2002 and now, again because of music
 and video files the vdr (video disk recording) project gave me the idea to
 finish this program including some features i was looking for.
@@ -706,11 +714,10 @@ finish this program including some features i was looking for.
 
 ## Important version history informations
 
-### VERSION > 1.4.6 goes 2.4.6
 
-    Requires PHP >= 8
+### VERSION > 1.4.6 goes 2.4.6++
 
-    Because of the underlaying library.
+Requires PHP >= 8 because of the underlaying library.
 
 
 ### VERSION < 1.4.6
@@ -721,21 +728,55 @@ finish this program including some features i was looking for.
 
 
 ### VERSION < 1.3.3 
+
 If you are updating to a newer version of multirename and your version is lower 
-than version 1.3.3 you need to update your existing configs. Beginning with 
-Version 2.0.0 the migration will be removed.
+than version 1.3.3 you need to update your existing configs.
 When executing some renaming please update the configs to the new structure by 
 using the --save-config flag. 
-e.g: multirename --from-config /path --save-config
+E.g: `multirename --from-config /path --save-config`. Thats all.
+
+
 # Changes of Multirename
 
-2023-11
-    - Updates multirename... VERSION 2.4.6
++ Mumsys_Multirename VERSION 2.5.19
+
+    - Repository broken due to restrictions at github.com. Solving the problems
+      results in: rewrite the git history to fix old problem github.com dont
+      support anymore: Done. clone force if you have a clone.
+        - Because of that change and the lib self:
+          VERSION 1.4.6 goes >2.4.6+ and PHP >= 8
+
+    - Fixes bugs and parameter annotations using phpstan (SCA) level=9
+        - Adds warning if HOME dir not exists 2.4.7
+        - Allow colletion path to be changed on construction (default: users
+          home directory). -> V 2.5.7
+        - initSetup() - Updates, fixes parameter checks including lazy false
+          checks ($a==false) which can be a value (e.g.: 0 (zero)) for
+          substitution. -> 4x -> 2.5.11
+        - _execute(), _undoRename - throws exception if a rename fails and
+          reports it correctly now. Befor history entries were written wrong 2x
+          2.5.13
+        - _getRelevantFiles() Fixes if scan of files fails 2.5.14
+        - _getRelevantFiles() Fixes --exclude: did not the expected work 2.5.15
+        - _addActionHistory(), _getActionHistory()  Fixes file handling and
+          throws exception on errors 2.5.17
+        - _mkConfigDir() throws exception if creation of config/ history files
+          fails 2.5.18
+        - _getCollection(), _setCollection() throws exception file/ json
+          handling fails 2.5.18
+        - getConfig() throws exception on error reading/handling a config 2.5.19
+
+    - Updates getSetup(), --help text
+    - Improves, updates tests
+    - Removes comments/code for version <= 1.3.3
+
+    - Updates getSetup(), fixes --help text
     - Updates multirename inline docs
-    - Fixes help output
     - Improves make file to create phar files
-    - Updates tests (in lib)
     - Improves CS, tests, SCA (Static Code Analysis)
+    - Removes comments/code for version <= 1.3.3
+
+
 
 2022-03
     - Updates for php 8.1
@@ -837,10 +878,9 @@ e.g: multirename --from-config /path --save-config
 - Stable version: 1.2.0 as release 1                            2015-05-21
 # Bugs
 
-There are one or some and hopefully none!
-Be sure using the --test mode and check all results! Have a look at the output 
-when substitution or search keywords having special characters e.g: ? & ... 
-I think the pcre engine does not like it but i haven't checked it yet.
+There are one or some and hopefully none! Be sure using the --test mode and
+check all results! Have a look at the output when substitution or search
+keywords having special characters e.g: ? & * / \ | # ... 
 
 Your help would be great to find bugs or add features and improvements.
 

@@ -95,16 +95,17 @@ first (tail -f multirename/tmp/multirename.$USER.log) befor stop the process.
         e.g: --link soft:rel or --link soft:abs the linkway will be extracted
         from that line. Otherwise use --link soft --linkway rel|abs
 
-    --history|-h
-        Flag; If set this will enable the history and tracks all actions for a
-        later undo
+    --history
+        Flag; If set this will track the current action in a history file e.g.
+        for a later undo.
 
     --history-size <yourValue/s>
-        Integer; Number of history entrys if --history is enabled; Default: 10;
-        Note: If you run on much more than hundreds of files you may set the
-        memory limit to a higher value and/or reduce this number to 1. This
-        feature may consume much memory. Using the --test mode with loglevel 6
-        or higher will give you informations about the memory usage.
+        Integer; Number of history entrys if --history is enabled; Default: 10.
+        To be set with --save-config and to be used automatically with
+        --from-config. Note: If you run on much more than hundreds of files you
+        may set the memory limit to a higher value and/or reduce this number to
+        1. This feature may consume much memory. Using the --test mode with
+        loglevel 6 or higher will give you informations about the memory usage.
 
     --batch
         Flag; Not implemented yet. Run the job recusiv from given --path as
@@ -149,7 +150,10 @@ first (tail -f multirename/tmp/multirename.$USER.log) befor stop the process.
         Print some stats after execution
 
     --version|-v
-        Flag; Return version informations
+        Flag; Return version information
+
+    --version-long
+        Flag; Return version informations incl. dependencies
 
     --help
         Show this help
