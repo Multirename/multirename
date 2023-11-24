@@ -149,6 +149,10 @@ word "this" if it exists:
     What the progam does now:
         - ' ' goes _ and then   # replacement 1
         - 'this' goes ''        # replacement 2
+    If the new file exists (--keepcopy) it creates a new version with an integer
+    suffix. Eg. `file.ext` exists and `file.1.ext` exists also: `file.2.ext`
+    will be created.
+
 
 
 ### Beautifing hyphen, comma and colon
