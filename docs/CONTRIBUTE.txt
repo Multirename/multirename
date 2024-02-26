@@ -1,6 +1,6 @@
-# Contributions
+## Contributions
 
-## Contributors are welcome!
+### Contributors are welcome
 
 Checkout branch of `unstable` including updates (e.g: composer install) and
 including the externals with updates: use the helper script:
@@ -20,7 +20,7 @@ externals (submodules) which having also these staging areas.
 If you would like to add features or push some improvements: The unstable branch
 is basicly the entry point and the latest code base.
 Checkout the `"unstable` branch create a new branch for your part to start in.
-    
+
     git clone https://github.com/Multirename/multirename.git
     cd multirename
     ./helper/gitupdate.sh unstable
@@ -56,7 +56,7 @@ workflow:
     # or have a look to ./helper/gitmerge.sh BranchToMerge` to stage the changes
 
 
-## Deployment
+### Deployment
 
 The build/make.php file will help to create files for the deployment e.g. if you
 would like to create a new readme.md/wiki entrys or to create a release. All

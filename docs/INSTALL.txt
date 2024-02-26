@@ -1,16 +1,17 @@
-# Install
+## Install
 
-## Downloads
+### Downloads
 
 Getting the source you have serveral options:
 
-Download page for [releases](https://github.com/Multirename/multirename/releases) 
+Download page for [releases](https://github.com/Multirename/multirename/releases)
 or [tags](https://github.com/Multirename/multirename/tags)
 
 Binary versions can be found [here](https://github.com/Multirename/bin)
 
 
-## Pre-Install
+### Pre-Install
+
 (*nix based systems)
 
 Requires PHP >= 8.0
@@ -24,13 +25,13 @@ For shell scripts: /bin/dash was the default shell (e.g. some helper scripts).
 Some output may be different when using bash. ash seems to be fine.
 
 
-### Windows
+#### Windows
 
-Please use cygwin (http://cygwin.com) or wsl. Native support will be in the
+Please use [cygwin.com](http://cygwin.com) or wsl. Native support will be in the
 future.
 
 
-### Quick install 
+#### Quick install
 
 (*nix based systems)
 
@@ -50,23 +51,23 @@ If a `multirename.phar` file is not available you can use one of the scripts in
 Read more below.
 
 
-    
-## Developer install
-    
+
+### Developer install
+
 Checkout the code and required library:
 
     git clone -b stable https://github.com/Multirename/multirename.git
     cd multirename/
     # checkout and update dependencies depending on the selected, cloned branch
     sh ./helper/gitupdate.sh [stable|testing|unstable]
-    
+
 
 The files you will call directly (if not already done):
 
     chmod +x <file>
 
 
-### The program comes in two flavors
+#### The program comes in two flavors
 
     1) Standard php usage (the src directory must be/stay intact):
 
@@ -99,29 +100,29 @@ The files you will call directly (if not already done):
         multirename [--help|options]
 
 
-    3.0: The library itself contains a `/bin/multirename[.php]` shell script 
+    3.0: The library itself contains a `/bin/multirename[.php]` shell script
         excluding all the rest of docs and other informations of this package.
 
 
 
-# Build
+## Build
 
 (build/make.php)
 
 This is not a typical make but for most of you probably an interesting corner.
 
-This shows you how to create your own multirename.phar file or building a new 
+This shows you how to create your own multirename.phar file or building a new
 release.
 
 
-## Build options
+### Build options
 
 1. php make.php install
 2. php make.php clean
 3. php make.php deploy
 
 
-### 1.: php make.php install:
+#### 1.: php make.php install
 
 You decided to use the bundled version (all files and required libraries in
 one file) for an easy usage. Use the file multirename.phar, thats all!
@@ -130,8 +131,8 @@ is required.
 
 If you want to build it by yourself, run: php make.php install
 
-Note: This requires php >= 8.0 and changes in your php.ini of the used php 
-version (if several on board). Changes in the php.ini for the cli only is ok. 
+Note: This requires php >= 8.0 and changes in your php.ini of the used php
+version (if several on board). Changes in the php.ini for the cli only is ok.
 The php.ini for web/ live/ production enviroment: STOP: NOT OK!
 
     e.g.: /etc/php/cli/php.ini:
@@ -158,13 +159,16 @@ On upgrades only "multirename.phar" needs to be updated. Checkout the bin/
 repository where i add final versions.
 
 
-### 2.: php make.php clean:
+#### 2.: php make.php clean
 
 Drops files created within the make script
 
 
-### 3.: php make.php deploy
+#### 3.: php make.php deploy
 
-Task for a new release of multirename or just updating the documentation. For 
+Task for a new release of multirename or just updating the documentation. For
 more please have a look in the [contributions section](#contributions) or at the
 (./docs/CONTRIBUTE.txt)
+
+
+

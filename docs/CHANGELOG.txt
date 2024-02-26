@@ -1,185 +1,188 @@
-# Changes of Multirename
+## Changes of Multirename
 
 2023-11
 
 + Mumsys_Multirename VERSION 2.5.19
 
-    - Repository broken due to restrictions at github.com. Solving the problems
+    + Repository broken due to restrictions at github.com. Solving the problems
       results in: rewrite the git history to fix old problem github.com dont
       support anymore: Done. clone force if you have a clone.
-        - Because of that change and the lib self:
+        + Because of that change and the lib self:
           VERSION 1.4.6 goes >2.4.6+ and PHP >= 8
 
-    - Fixes bugs and parameter annotations using phpstan (SCA) level=9
-        - Adds warning if HOME dir not exists 2.4.7
-        - Allow colletion path to be changed on construction (default: users
+    + Fixes bugs and parameter annotations using phpstan (SCA) level=9
+        + Adds warning if HOME dir not exists 2.4.7
+        + Allow colletion path to be changed on construction (default: users
           home directory). -> V 2.5.7
-        - initSetup() - Updates, fixes parameter checks including lazy false
+        + initSetup() - Updates, fixes parameter checks including lazy false
           checks ($a==false) which can be a value (e.g.: 0 (zero)) for
           substitution. -> 4x -> 2.5.11
-        - _execute(), _undoRename - throws exception if a rename fails and
+        + _execute(),_undoRename - throws exception if a rename fails and
           reports it correctly now. Befor history entries were written wrong 2x
           2.5.13
-        - _getRelevantFiles() Fixes if scan of files fails 2.5.14
-        - _getRelevantFiles() Fixes --exclude: did not the expected work 2.5.15
-        - _addActionHistory(), _getActionHistory()  Fixes file handling and
+        + _getRelevantFiles() Fixes if scan of files fails 2.5.14
+        + _getRelevantFiles() Fixes --exclude: did not the expected work 2.5.15
+        + _addActionHistory(),_getActionHistory()  Fixes file handling and
           throws exception on errors 2.5.17
-        - _mkConfigDir() throws exception if creation of config/ history files
+        + _mkConfigDir() throws exception if creation of config/ history files
           fails 2.5.18
-        - _getCollection(), _setCollection() throws exception file/ json
+        + _getCollection(),_setCollection() throws exception file/ json
           handling fails 2.5.18
-        - getConfig() throws exception on error reading/handling a config 2.5.19
+        + getConfig() throws exception on error reading/handling a config 2.5.19
 
-    - Updates getSetup(), --help text
-    - Improves, updates tests
-    - Removes comments/code for version <= 1.3.3
+    + Updates getSetup(), --help text
+    + Improves, updates tests
+    + Removes comments/code for version <= 1.3.3
 
-    - Updates getSetup(), fixes --help text
-    - Updates multirename inline docs
-    - Improves make file to create phar files
-    - Improves CS, tests, SCA (Static Code Analysis)
-    - Removes comments/code for version <= 1.3.3
+    + Updates getSetup(), fixes --help text
+    + Updates multirename inline docs
+    + Improves make file to create phar files
+    + Improves CS, tests, SCA (Static Code Analysis)
+    + Removes comments/code for version <= 1.3.3
 
 
 
 2022-03
 
-- Updates for php 8.1
++ Updates for php 8.1
 
 
 
 2019-XX
 
-- Upgrades to php7.3..8.0
++ Upgrades to php7.3..8.0
 
 
 
 2019-10
 
-- Improves check of logger usage on init.
-- Improves phpdoc using phpstan up to level 5 now
-- Fixes getVersionLong()
++ Improves check of logger usage on init.
++ Improves phpdoc using phpstan up to level 5 now
++ Fixes getVersionLong()
 
 
 
 2018-XX
 
-- Removes exception for root user but send a warning
-- Updates getVersionLong() to show the global version ID
++ Removes exception for root user but send a warning
++ Updates getVersionLong() to show the global version ID
 
 
 
 2018-03-19
 
-- Adds global version ID ./multirename -v
-- Version 1.4.4
++ Adds global version ID ./multirename -v
++ Version 1.4.4
 
 
 
 2017-04-21
 
-- Bufix handling --link, --linkway
-- Updates start script to use Logger decorator for messages
-- Version 1.4.3
++ Bufix handling --link, --linkway
++ Updates start script to use Logger decorator for messages
++ Version 1.4.3
 
 
 
 2016-11-05
 
-- Updates start script to use Mumsys_Logger_Default
++ Updates start script to use Mumsys_Logger_Default
 
 
 
 2016-04-10
 
-- Improves handling of stored config files
-    A config can contain selveral sub configs e.g: one config for this file 
++ Improves handling of stored config files
+    A config can contain selveral sub configs e.g: one config for this file
     extension and one config for that file extension and so on.
-    there is no config management at the moment. add some config or delete 
-    the config file is currently supported. The thing at all: this config 
-    will be called from now on (next version) the default "preset" and it 
+    there is no config management at the moment. add some config or delete
+    the config file is currently supported. The thing at all: this config
+    will be called from now on (next version) the default "preset" and it
     containts one of more configs.
-- Update/ improves tests
-- codecoverage 100%
-- bugfix with --find option; fixes issue #3
-- add --exclude option; fixes feature #5
-- Version 1.4.1
++ Update/ improves tests
++ codecoverage 100%
++ bugfix with --find option; fixes issue #3
++ add --exclude option; fixes feature #5
++ Version 1.4.1
 
 
 
 2016-03-27
 
-- Improves history handling
-- Sets logger property to be private
-- new version: 1.3.3
-- Update/ improves tests
-- codecoverage 100%
++ Improves history handling
++ Sets logger property to be private
++ new version: 1.3.3
++ Update/ improves tests
++ codecoverage 100%
 
 
 
 2015-10-25
 
-- Adds --exclude option, Updates tests, fixes issue #5
-- version 1.3.1
++ Adds --exclude option, Updates tests, fixes issue #5
++ version 1.3.1
 
 
 
 2015-08-09
 
-- new Version: 1.3.0
-- adds history tracking and "history-size" option
-- Fixed incomplete bugfix in version 1.2.5 of _getRelevantFiles()
-- Adds missing tests for the bugfix in 1.2.4, 1.2.5
-- Updates/ improves inline/ php docs
++ new Version: 1.3.0
++ adds history tracking and "history-size" option
++ Fixed incomplete bugfix in version 1.2.5 of _getRelevantFiles()
++ Adds missing tests for the bugfix in 1.2.4, 1.2.5
++ Updates/ improves inline/ php docs
 
 
 
 2015-08-06
 
-- new Version: 1.2.5
-- Fixed incomplete bugfix in version 1.2.4
++ new Version: 1.2.5
++ Fixed incomplete bugfix in version 1.2.4
 
 
 
 2015-08-01
 
-- new Version: 1.2.4
-- Fixes a fault in --find option when trying to find for several keywords
++ new Version: 1.2.4
++ Fixes a fault in --find option when trying to find for several keywords
 
 
 
 2015-06-24
 
-- new Version: 1.2.3
-- Improves output messages in test mode
-- Adds --find option
-- Improves crap index of run() method 
-- Adds method _substitution()
-- Improves/ Updates tests
++ new Version: 1.2.3
++ Improves output messages in test mode
++ Adds --find option
++ Improves crap index of run() method
++ Adds method _substitution()
++ Improves/ Updates tests
 
 
 
 2015-05-24
 
-- Fixes handling of shell arguments in library; Fixes issue #1;
-- Set VERSION 1.2.1
++ Fixes handling of shell arguments in library; Fixes issue #1;
++ Set VERSION 1.2.1
 
 
 
-## Timeline
+### Timeline
 
-- alpha version:
-- Code freeze:                                                  2015-03/04
-    - write and push existig tests first
-    - find bugs and fix them
++ alpha version:
++ Code freeze:                                                  2015-03/04
+    + write and push existig tests first
+    + find bugs and fix them
 
-- announce first pre release,                                   2015-04-22/23
-    - create preRelease branch/tag and make default branch
++ announce first pre release,                                   2015-04-22/23
+    + create preRelease branch/tag and make default branch
 
-- bug hunting time. ask the people                              2015-05-16
++ bug hunting time. ask the people                              2015-05-16
 
-- release (master)                                              2015-05-16
-    - init staging areas:
-        - add testing and unstable branches
-    - new features :-)
-- Stable version: 1.2.0 as release 1                            2015-05-21
++ release (master)                                              2015-05-16
+    + init staging areas:
+        + add testing and unstable branches
+    + new features :-)
++ Stable version: 1.2.0 as release 1                            2015-05-21
+
+
+

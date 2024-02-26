@@ -5,7 +5,7 @@
 - [00%] initSetup: value could be an array from another app when shell gives strings
         Check code for this text line
 
-- [00%] resolve paths --path when using relativ path: eg: 
+- [00%] resolve paths --path when using relativ path: eg:
         somewhere:../../../../../../tmp/ vs /tmp
 
 - [00%] #2 global substitutions as prefix or suffix to current substitutions?
@@ -22,7 +22,7 @@
 
 ## General
 
-- [34%] cleanup code: eg: substitution in a new methode, testmode in a new 
+- [34%] cleanup code: eg: substitution in a new methode, testmode in a new
         methode eg (tbc.): actionTest(), actionRename()
 
 - [50%] improve the (test)output. limit messages e.g.: 'DONE'
@@ -30,11 +30,11 @@
 
 ## history
 
-- [00%]  Extend "History size exceed. Oldest entry droped" message. 
+- [00%]  Extend "History size exceed. Oldest entry droped" message.
     Show number of entrys and history limit
 
-- [10%] extend history, multiple undo's, detection of already removed files.. 
-      what to do then? how to report? if target file exists (keep copy or 
+- [10%] extend history, multiple undo's, detection of already removed files..
+      what to do then? how to report? if target file exists (keep copy or
       replace? in batch?) ?
 
 
@@ -46,7 +46,7 @@
       --> presets in the local storage with --preset option? yes, sounds good!
       --preset only if not the default: "_" value
 
-- [00%] rename list of given (existing|nonexisting?) files or output shell args 
+- [00%] rename list of given (existing|nonexisting?) files or output shell args
         or a list of from->to?
 
 
@@ -64,18 +64,18 @@
 - [00%] extend rename function to apply filter functions (befor and after) like:
         UPPER, lower, ucfirst, ucword
 
- -[00%] @todo windows? cygwin: yes 
+ -[00%] @todo windows? cygwin: yes
         nativ support with c:\php.exe multirename.php ?
         how to link/symlink, hidden files?
 
 
 # Done
 
- - [99%] Where it happens! currently! DB make things complicated over the ages.
+- [99%] Where it happens! currently! DB make things complicated over the ages.
       Config files centalized or where it happens?
       where it happens:
-      - bad 
+      - bad
           on multi-user systems: file permission problems (eg. shared folders)
           no config share (can be help-/useful eg in: /var/)
-      - good 
+      - good
           to look directly in the config file where the action belongs to

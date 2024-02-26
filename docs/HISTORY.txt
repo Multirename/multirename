@@ -1,4 +1,4 @@
-# History
+## History
 
 Multirename is made for users which have not that detailed knowlege using the
 shell. Also me :-) but i know php and find my solution to help myself for a
@@ -11,27 +11,28 @@ and video files the vdr (video disk recording) project gave me the idea to
 finish this program including some features i was looking for.
 
 
-## Important version history informations
+### Important version history informations
 
 
-### VERSION > 1.4.6 goes 2.4.6++
+#### VERSION > 1.4.6 goes 2.4.6++
 
 Requires PHP >= 8 because of the underlaying library.
 
 
-### VERSION < 1.4.6
+#### VERSION < 1.4.6
 
     Most versions not published.
 
     Nearly all versions should work with php5.6...php8.3
 
 
-### VERSION < 1.3.3 
+#### VERSION < 1.3.3
 
-If you are updating to a newer version of multirename and your version is lower 
+If you are updating to a newer version of multirename and your version is lower
 than version 1.3.3 you need to update your existing configs.
-When executing some renaming please update the configs to the new structure by 
-using the --save-config flag. 
+When executing some renaming please update the configs to the new structure by
+using the --save-config flag.
 E.g: `multirename --from-config /path --save-config`. Thats all.
+
 
 

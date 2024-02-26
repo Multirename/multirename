@@ -186,7 +186,7 @@ function makeReadmeMd()
     $content = '';
     $target = './README.md';
     // TOC tree to show. Value 1 - ~6 (for: h1-h6)
-    $levelsToShow = 2;
+    $levelsToShow = 3;
 
     $summary = array();
     $content = '';
@@ -205,7 +205,7 @@ function makeReadmeMd()
         {
             $content .= $line;
 
-            $linktext = checkDocTocLine( $line, $levelsToShow, '-', "\n", $idx );
+            $linktext = checkDocTocLine( $line, $levelsToShow, '+', "\n", $idx );
             if ( $linktext ) {
                 $summary[] = $linktext;
             }
@@ -251,8 +251,8 @@ function makeReadmeMd()
         }
     }
 
-    $summary = '# Summary' . "\n" . "\n" .  implode('', $summary);
-    $content = str_replace('# Summary', $summary, $content);
+    $summary = '## Summary' . "\n" . "\n" .  implode('', $summary);
+    $content = str_replace('## Summary', $summary, $content);
     // replace makers
     $content = str_replace(array('##VERSIONSTRING##'), array(Mumsys_Multirename::VERSION), $content);
     file_put_contents($target, $content);
@@ -270,7 +270,7 @@ function makeReadmeMd()
  * @param type $lineNumber Optional line number for error output
  * @return string Empty string for no headline or the text as link with anker
  */
-function checkDocTocLine($line, $levelsToShow=6, $listSign='-', $docEOL ="\n", $lineNumber=0) {
+function checkDocTocLine($line, $levelsToShow=6, $listSign='+', $docEOL ="\n", $lineNumber=0) {
 
      $tocLine = '';
 
@@ -295,7 +295,7 @@ function checkDocTocLine($line, $levelsToShow=6, $listSign='-', $docEOL ="\n", $
             echo 'ERROR with line (' . ($idx+1) . '): "' . $line . '"' . PHP_EOL;
         }
 
-        $indent = str_repeat( "\t", $cntIndent );
+        $indent = str_repeat( "    ", $cntIndent );
         $prefix = str_replace( $matches[1], $indent . $listSign, $prefixA );
 
         $line = trim( $line );
@@ -398,7 +398,7 @@ try
                         . '# ./deploy/multirename-' . $version . '.phar --help' . PHP_EOL
                         . '#' . PHP_EOL
                         . '### make globaly available' . PHP_EOL
-                        . '# mv build/multirename-' . $version . '.phar /usr/local/bin/multirename' . PHP_EOL
+                        . '# mv deploy/multirename-' . $version . '.phar /usr/local/bin/multirename' . PHP_EOL
                         . '# multirename --help' . PHP_EOL
                         . PHP_EOL
                         . PHP_EOL
@@ -429,7 +429,7 @@ try
                 // for deployment of a new releases or updating the docs
                 makePhar( $version );
 
-                if ( updUsageFile('## Usage options (--help)') ) {
+                if ( updUsageFile('### Usage options (--help)') ) {
                     echo 'USAGE.txt updated' . PHP_EOL;
                 } else {
                     echo 'USAGE.txt same' . PHP_EOL;
@@ -446,7 +446,8 @@ try
                     // rename('build/multirename.phar', 'build/multirename-'.$version.'.phar');
                     $tgzFile = 'deploy/multirename-'.$version.'.tgz';
                     if ( file_exists( $tgzFile ) ) {
-                        echo 'EXISTS: tgz in deploy/ already exists. Asume only one package per version' . PHP_EOL;
+                        echo 'Not created! EXISTS: tgz in deploy/ already exists. ';
+                        echo 'Asume only one package per version.' . PHP_EOL;
                     } else {
                         $cmd = 'tar -czf "' . $tgzFile . '" '
                             . 'deploy/multirename-' . $version . '.phar '

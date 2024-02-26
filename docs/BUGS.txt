@@ -1,9 +1,10 @@
-# Bugs
+## Bugs
 
 There are one or some and hopefully none! Be sure using the --test mode and
 check all results! Have a look at the output when substitution or search
-keywords having special characters e.g: ? & * / \ | # ... 
+keywords having special characters e.g: ? & * / \ | # ...
 
 Your help would be great to find bugs or add features and improvements.
+
 
 

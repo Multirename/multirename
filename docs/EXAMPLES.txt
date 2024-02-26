@@ -1,10 +1,10 @@
-# Examples for Multirename
+## Examples for Multirename
 
-## Simple replacements/ substitutions:
+### Simple replacements/ substitutions
 
-### Example
+#### Example
 
-Delete all spaces in filenames and replace it with an underscore and remove the 
+Delete all spaces in filenames and replace it with an underscore and remove the
 word "this" if it exists:
 
     multirename --path 'YOUR_PATH' \
@@ -24,21 +24,21 @@ word "this" if it exists:
 
 
 
-### Beautifing hyphen, comma and colon
+#### Beautifing hyphen, comma and colon
 
-Your substitution could look like: 
+Your substitution could look like:
 
     --substitutions '-=_-_;,=_-_;:=_-_'
 
 
-### Show a saved configuration:
+#### Show a saved configuration
 
     multirename --from-config 'YOUR_PATH' --show-config --test
 
 
-### Use a saved configuration
+#### Use a saved configuration
 
-Use a saved configuration but test befor, then execute it and save the 
+Use a saved configuration but test befor, then execute it and save the
 configuration again (YOUR_PATH belongs to the path where your file are):
 
     multirename --from-config 'YOUR_PATH' --test
@@ -49,14 +49,14 @@ As you can see, using --test is always a good option to avoid problems!
 
 
 
-## For the vdr project this can help
+### For the vdr project this can help
 
-### Example 1
+#### Example 1
 
 Check the difference in simple recordings and series recordings in vdr.
 The following example is for simple recordings!
 You may split your recordings in sub-folders like "movies" and "series".
-Change request for vdradmin-am already exists: http://projects.vdr-developer.org/issues/2137)
+Change request for vdradmin-am already exists: <http://projects.vdr-developer.org/issues/2137>)
 
     multirename --path 'YOUR_RECORDING_PATH_FOR_MOVIES' \
         --fileextensions ts;m2t;mpg;mpeg; \
@@ -65,7 +65,7 @@ Change request for vdradmin-am already exists: http://projects.vdr-developer.org
         --recursive \
         --sub-paths \
         --test
-    
+
 Would do e.g.:
 
     old: 00001.ts
@@ -76,14 +76,14 @@ Would do e.g.:
     new: ../True_Grit.nfo
 
 The default pattern for vdr recordings:
- 
+
     regex:/^(\d{5}|\d{5}\.ts|info|marks)$/i
 
 
-### Example 2
+#### Example 2
 
-This example is for my series. When recording i use different subfolders like: 
-Movie, Series, Doc, DocSeries so i can run multirename automatically without 
+This example is for my series. When recording i use different subfolders like:
+Movie, Series, Doc, DocSeries so i can run multirename automatically without
 much attention. At the end of the substitutions parameter you find some specific
 words for german television i dont want to have.:
 
@@ -95,7 +95,7 @@ words for german television i dont want to have.:
         --sub-paths \
         --test
 
-Would do e.g. (in real i just create relative symlinks --link 'soft:rel' and 
+Would do e.g. (in real i just create relative symlinks --link 'soft:rel' and
 don't rename the files!):
 
     old: 00001.ts ...TO:
@@ -109,7 +109,7 @@ don't rename the files!):
 
 
 
-## Synology DTV TV recordings
+### Synology DTV TV recordings
 
     multirename --path 'YOUR-SYNO-RECORDING-PATH' \
         -e "ts;m2t;mpg;mpeg"
@@ -124,23 +124,23 @@ Would do e.g.:
     new: Merlin_-_2014-08-16_1410.ts
 
 
-### Example 3
+#### Example 3
 
 Wallpapers? I love Wallpapers and they are great in debian/ubuntu!
 In your own path? It works but you can not save the
 setting if you are not root (let it be to be root) for the future.
 
 Scan for all wallpapers and symlink them to your target path.
-Change in the last line: <YOUR-USERNAME> and <PICTURE-PATH>
+Change in the last line: [YOUR-USERNAME] and [PICTURE-PATH]
 Don't forget to remove the test flag to execute!
 
-    multirename --test 
-        --path /usr/share/wallpapers 
-        --fileextensions 'png;jpg' 
-        --recursive 
-        --sub-paths 
-        --link "soft:rel" 
-        --substitutions "regex:/(1920x(.*))/i=../../../../../../home/<YOUR-USERNAME>/<PICTURE-PATH>/wallpapers/%path3%"
+    multirename --test
+        --path /usr/share/wallpapers
+        --fileextensions 'png;jpg'
+        --recursive
+        --sub-paths
+        --link "soft:rel"
+        --substitutions "regex:/(1920x(.*))/i=../../../../../../home/[YOUR-USERNAME]/[PICTURE-PATH]/wallpapers/%path3%"
 
 
 

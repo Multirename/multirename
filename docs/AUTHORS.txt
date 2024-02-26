@@ -1,19 +1,20 @@
-# Authors
+## Authors
 
-## Contributed features
+### Contributed features
 
 <Developer>
     <Feature Description>
 
 
-## Implemented suggestions
+### Implemented suggestions
 
 <Name>
     <Feature Description>
 
 
-## Core developers
+### Core developers
 
 Florian Blasel
+
 
 
