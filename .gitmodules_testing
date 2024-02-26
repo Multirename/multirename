@@ -7,5 +7,5 @@
     path = externals/multirename.wiki
     url = https://github.com/Multirename/multirename.wiki.git
     branch = testing
-    # public goes only to the master branch!
+    # public: it goes only to the master branch!
 

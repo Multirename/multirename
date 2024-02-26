@@ -22,6 +22,7 @@ temp/
 copy-free-scripts-from-lib.php
 svn/*
 .svn/
+.git_multirename246withSymlinksInRepo20231112
 
 /.settings
 /.project

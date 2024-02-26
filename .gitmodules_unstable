@@ -11,5 +11,5 @@
 
 [submodule "bin"]
     path = bin
-    url = git@github.com:Multirename/bin.git
+    url = https://github.com/Multirename/bin.git
     branch = master
